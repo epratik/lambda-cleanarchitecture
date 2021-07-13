@@ -1,0 +1,39 @@
+#YOU HAVE TO BUILD THE PROJECT AND CONVERT TO JAVASCRIPT BEFORE RUNNING SERVERLESS DEPLOY.
+service: my-first-lambda
+provider:
+  name: aws #cloud provider
+  runtime: nodejs14.x  #runtime language and version
+  role: arn:aws:iam::**************:role/my-first-lambda-role #Role with access to services your lambda depends on.
+  region: us-west-2  # cloud provider region where service deploys and resides. choose your preferred region
+functions:
+  create-user-lambda:
+    handler: dist/src/lambda/CreateUser.handler #Reference to file handler.js & exported function 'write'
+    layers:
+      - { Ref: CommonLambdaLayer }
+    package:
+      individually: true
+      patterns:
+        - '!./**' #ignore all
+        - 'dist/**' #include only dist folder
+        - '!dist/src/lambdas' #ignore all inside lambda.
+        - 'dist/src/lambdas/CreateUser.js' #include only this lambda.
+  update-user-lambda:
+    handler: dist/src/lambda/UpdateUser.handler #Reference to file handler.js & exported function 'write'
+    layers:
+      - { Ref: CommonLambdaLayer }
+    package:
+      individually: true
+      patterns:
+        - '!./**' #ignore all
+        - 'dist/**' #include only dist folder
+        - '!dist/src/lambdas' #ignore all inside lambda.
+        - 'dist/src/lambdas/UpdateUser.js' #include only this lambda.
+layers:
+  Common:
+    path: dependencies # required, path to layer contents on disk
+    name: Common # optional, Deployed Lambda layer name
+    description: contains common node dependencies # optional, Description to publish to AWS
+    compatibleRuntimes: # optional, a list of runtimes this layer is compatible with
+      - nodejs14.x
+    licenseInfo: MIT # optional, a string specifying license information  
+    retain: false # optional, false by default. If true, layer versions are not deleted as new ones are created

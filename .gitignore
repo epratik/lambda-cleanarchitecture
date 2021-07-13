@@ -1,0 +1,36 @@
+.DS_Store
+
+coverage
+node_modules
+
+/dependencies/nodejs/node_modules
+/dist
+/dist.zip
+
+
+
+
+# local env files
+.env
+.ENV
+
+
+
+# Log files
+
+npm-debug.log*
+
+yarn-debug.log*
+
+yarn-error.log*
+
+pnpm-debug.log*
+
+
+
+# Editor directories and files
+
+.vscode
+.serverless
+
+

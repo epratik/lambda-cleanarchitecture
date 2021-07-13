@@ -1,0 +1,33 @@
+{
+  "compilerOptions":{
+     "target":"es2017",
+     "module":"commonjs",
+     "outDir":"dist",
+     "rootDir":"./",
+     "strict":true,
+     "strictPropertyInitialization":false,
+     "moduleResolution":"node",
+     "baseUrl":".",
+     "paths":{
+        "*":[
+           "dependencies/nodejs/node_modules/@types/*",
+           "dependencies/nodejs/node_modules/*"
+        ]
+     },
+     "typeRoots":[
+        "dependencies/nodejs/node_modules/@types"
+     ],
+     "esModuleInterop":true,
+     "experimentalDecorators":true,
+     "emitDecoratorMetadata":true,
+     "skipLibCheck":true,
+     "forceConsistentCasingInFileNames":true
+  },
+  "include":[
+     "src/**/*.ts",
+     "tests/**/*.ts"
+  ],
+  "exclude":[
+     "node_modules"
+  ]
+}
